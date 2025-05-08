@@ -1,0 +1,111 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  text-align: center;
+  height: 65vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+   position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  gap: 50px;
+}
+
+.circleh {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: scaleAnimation 1s ease-in-out infinite;
+}
+
+.circleh span {
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgb(156, 156, 156);
+}
+
+
+.text {
+  margin-top: 20px;
+  font-size: 32px;
+  font-weight: 900;
+  font-family: 'Rajdhani', sans-serif;
+  background: linear-gradient(90deg, #dad7d7, #ad6749, #c4bfbf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 60px;
+ padding: 6px;
+}
+
+#token-number{
+  font-size: 30px;
+}
+#token-number2{
+  font-size: 50px;
+}
+
+@keyframes scaleAnimation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+.wave-text{
+  color: #919191;
+  font-weight: 400;
+  font-size: 25px;
+  font-family: 'Rajdhani', sans-serif;
+  z-index: 1;
+}
+
+/* .wave-text {
+display: flex;
+gap: 5px;
+
+} */
+
+@media screen and (max-width: 445px) {
+.text{
+  font-size: 25px;
+}
+
+
+.wave-text p{
+  font-size: 19px;
+  padding: 8px;
+}
+
+
+
+.circleh{
+  width: 150px;
+  height: 150px;
+  background: transparent;
+}
+p{
+  font-size: 15px;
+  padding: 8px;
+
+}
+#token-number{
+  font-size: 60px;
+}
+#token-number2{
+  font-size: 50px;
+}
+}
