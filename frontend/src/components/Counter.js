@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
@@ -10,7 +8,8 @@ const Counter = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(
-    localStorage.getItem("isAuthenticated") === "true"||localStorage.getItem("phone")
+    localStorage.getItem("isAuthenticated") === "true" ||
+      localStorage.getItem("phone")
   );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -127,40 +126,48 @@ const Counter = () => {
     localStorage.removeItem("isAuthenticated"); // Remove auth state
   };
 
-
-
   // counter Page
   const tableHeaderStyle = {
-    padding: "12px",
+    padding: "15px",
     position: "sticky",
     zIndex: "10",
-    // backgroundColor: "red",
     top: "0",
+    fontFamily: "rajdhani, sans-serif",
     fontSize: "22px",
+    backgroundColor: "transparent",
     fontWeight: "bold",
     whiteSpace: "nowrap", // Prevent text from wrapping
   };
 
   const tableCellStyle = {
     padding: "12px",
+    fontFamily: "rajdhani, sans-serif",
     borderBottom: "1px solid #ddd",
     whiteSpace: "nowrap",
     fontSize: "19px",
+    color: "white",
+    backgroundColor: "rgb(24, 23, 23)",
   };
 
   return (
+    <>
+    
     <div
       style={{
         paddingTop: "5px",
         paddingBottom: "5px",
+        margiLeft: "15px",
         fontFamily: "Arial, sans-serif",
-        backgroundColor: "white",
-        height: "100vh",
-        width: "100%",
+        backgroundColor: "rgb(24, 23, 23)",
+        height: "60%",
+        width: "103%",
         position: "absolute",
-        top: "0",
+        top: "40%",
+        display: "flex",
         left: "0",
+        overflowY: "auto",
         zIndex: "5",
+        // background: "red",
       }}
     >
       <button
@@ -168,16 +175,20 @@ const Counter = () => {
         style={{
           float: "right",
           padding: "10px 18px",
-          backgroundColor: "#ff4d4d",
+          background:
+            "linear-gradient(to right, rgb(83, 55, 55), rgb(59, 54, 48))",
           color: "white",
           border: "none",
           borderRadius: "6px",
+          display: "flex",
           cursor: "pointer",
           fontSize: "16px",
           transition: "0.3s",
+          fontFamily: "rajdhani, sans-serif",
           position: "fixed",
           bottom: "2%",
           left: "2%",
+          overflowY: "auto",
           zIndex: "2",
         }}
         onMouseOver={(e) => (e.target.style.backgroundColor = "#cc0000")}
@@ -206,89 +217,92 @@ const Counter = () => {
             width: "100%",
           }}
         >
-
-<div
-  style={{
-    width: "100%",
-    maxHeight: "98vh", // Set max height for vertical scrolling
-    overflowY: "auto", // Enable vertical scroll
-    overflowX: "auto", // Keep horizontal scroll for mobile
-  }}
->
-  <table
-    style={{
-      width: "100%",
-      minWidth: "600px",
-      borderCollapse: "collapse",
-      backgroundColor: "#fff",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    }}
-  >
-    <thead>
-      <tr
-        style={{
-          backgroundColor: "#007bff",
-          position: "sticky",
-    zIndex: "10",
-    top: "0",
-          color: "white",
-          textAlign: "left",
-        }}
-      >
-        <th style={tableHeaderStyle}>S. No.</th>
-        <th style={tableHeaderStyle}>Name</th>
-        <th style={tableHeaderStyle}>Mobile Number</th>
-        <th style={tableHeaderStyle}>Email</th>
-        <th style={tableHeaderStyle}>Token</th>
-        <th style={tableHeaderStyle}>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((item, index) => (
-        <tr
-          key={item._id}
-          style={{
-            backgroundColor: index % 2 === 0 ? "#f8f9fa" : "#ffffff",
-          }}
-        >
-          <td style={tableCellStyle}>{index + 1}</td>
-          <td style={tableCellStyle}>{item.name}</td>
-          <td style={tableCellStyle}>{item.mobile}</td>
-          <td style={tableCellStyle}>{item.email}</td>
-          <td style={tableCellStyle}>{item.token}</td>
-          <td style={tableCellStyle}>
-            <button
-              onClick={() => handleClick(index)}
+          <div
+            style={{
+              width: "100%",
+              maxHeight: "98vh", // Set max height for vertical scrolling
+              overflowY: "auto", // Enable vertical scroll
+              overflowX: "auto", // Keep horizontal scroll for mobile
+            }}
+          >
+            <table
               style={{
-                padding: "10px 20px",
-                backgroundColor: item.clicked ? "#dc3545" : "#28a745",
-                color: "#fff",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-                fontSize: "14px",
-                transition: "0.3s",
+                width: "100%",
+                minWidth: "600px",
+                borderCollapse: "collapse",
+                backgroundColor: "#fff",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               }}
-              onMouseOver={(e) =>
-                (e.target.style.backgroundColor = item.clicked
-                  ? "#a71d2a"
-                  : "#1e7e34")
-              }
-              onMouseOut={(e) =>
-                (e.target.style.backgroundColor = item.clicked
-                  ? "#dc3545"
-                  : "#28a745")
-              }
             >
-              {item.clicked ? "Clicked" : "OK"}
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
+              <thead>
+                {/* its nevbar */}
+                <tr
+                  style={{
+                    background:
+                      "linear-gradient(90deg,rgb(59, 52, 52),rgb(114, 68, 48),rgb(58, 49, 49))",
+                    position: "sticky",
+                    zIndex: "10",
+                    top: "0",
+                    left: "0",
+                    color: "white",
+                    textAlign: "left",
+                  }}
+                >
+                  <th style={tableHeaderStyle}>S. No.</th>
+                  <th style={tableHeaderStyle}>Name</th>
+                  <th style={tableHeaderStyle}>Mobile Number</th>
+                  <th style={tableHeaderStyle}>Email</th>
+                  <th style={tableHeaderStyle}>Token</th>
+                  <th style={tableHeaderStyle}>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item, index) => (
+                  <tr
+                    key={item._id}
+                    style={{
+                      backgroundColor: index % 2 === 0 ? "#f8f9fa" : "#ffffff",
+                    }}
+                  >
+                    <td style={tableCellStyle}>{index + 1}</td>
+                    <td style={tableCellStyle}>{item.name}</td>
+                    <td style={tableCellStyle}>{item.mobile}</td>
+                    <td style={tableCellStyle}>{item.email}</td>
+                    <td style={tableCellStyle}>{item.token}</td>
+                    <td style={tableCellStyle}>
+                      <button
+                        onClick={() => handleClick(index)}
+                        style={{
+                          padding: "10px 20px",
+                          backgroundColor: item.clicked
+                            ? " #dc3545"
+                            : "rgb(118, 184, 133)",
+                          color: "rgb(255, 255, 255)",
+                          border: "none",
+                          borderRadius: "6px",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                          transition: "0.3s",
+                        }}
+                        onMouseOver={(e) =>
+                          (e.target.style.backgroundColor = item.clicked
+                            ? " #a71d2a"
+                            : " #1e7e34")
+                        }
+                        onMouseOut={(e) =>
+                          (e.target.style.backgroundColor = item.clicked
+                            ? " #dc3545"
+                            : " rgb(118, 184, 133)")
+                        }
+                      >
+                        {item.clicked ? "Clicked" : "OK"}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : (
         <h3
@@ -303,6 +317,7 @@ const Counter = () => {
         </h3>
       )}
     </div>
+    </>
   );
 };
 

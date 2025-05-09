@@ -118,13 +118,14 @@ function Display() {
   left: 0;
   display: flex;
   justify-content: center;
+  z-index: 2;
   align-items: center;
 }
  .circle-container {
     margin: 0;
     padding: 0;
     position: relative;
-    height: 35vh;
+    height: 33vh;
     /* background-color: green; */
     width: 85%;
     border-top-right-radius: 150px;

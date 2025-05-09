@@ -47,7 +47,7 @@ const Countdown = () => {
     <div
       style={{
         ...styles.container,
-        background: `linear-gradient(to top, blue ${progress}%, white ${progress}%)`,opacity:"30%",
+        background: `linear-gradient(to top,rgb(29, 26, 26) ${progress}%, white ${progress}%)`,opacity:"30%",
       }}
     >
       {showMessage ? (

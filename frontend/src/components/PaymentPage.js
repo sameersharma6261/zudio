@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import {
   FaCreditCard,
-  FaPaypal,
-  FaApplePay,
   FaLock,
   FaUser,
   FaKey,
@@ -14,10 +12,10 @@ import { useNavigate } from "react-router-dom";
 function PaymentPage() {
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [formData, setFormData] = useState({
-    number: "",
-    name: "",
-    expiry: "",
-    cvv: "",
+    number: "1234 5678 9012 3456",
+    name: "contact",
+    expiry: "12/12",
+    cvv: "123",
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -41,112 +39,121 @@ function PaymentPage() {
 
   return (
     <>
-        <div className="background">
-      <div className="checkout-container">
-        <h2>Complete Your Payment</h2>
-        <p className="secure-text">
-          <FaLock /> Secure Payment
-        </p>
+      <div className="background">
+        <div className="checkout-container">
+          <h2>Complete Your Payment</h2>
+          <p className="secure-text">
+            <FaLock /> Secure Payment
+          </p>
 
-        {/* Payment Method */}
-        <div className="payment-methods">
-          <button
-            className={paymentMethod === "credit" ? "active" : ""}
-            onClick={() => setPaymentMethod("credit")}
-          >
-            <FaCreditCard /> Card
-          </button>
-          <button
-  className={paymentMethod === "upi" ? "active" : ""}
-  onClick={() => setPaymentMethod("upi")}
->
-  <FaWallet /> UPI
-</button>
+          {/* Payment Method */}
+          <div className="payment-methods">
+            <button
+              className={paymentMethod === "credit" ? "active" : ""}
+              onClick={() => setPaymentMethod("credit")}
+            >
+              <FaCreditCard /> Card
+            </button>
+            <button
+              className={paymentMethod === "upi" ? "active" : ""}
+              onClick={() => setPaymentMethod("upi")}
+            >
+              <FaWallet /> UPI
+            </button>
 
-<button
-  className={paymentMethod === "cash" ? "active" : ""}
-  onClick={() => setPaymentMethod("cash")}
->
-  <FaMoneyBillAlt /> Cash
-</button>
-        </div>
-
-        {/* Card Preview */}
-        <div className="card-preview">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Chip-card-icon.svg/120px-Chip-card-icon.svg.png"
-            alt="chip"
-          />
-          <div className="dots">{formData.number || "•••• •••• •••• ••••"}</div>
-          <div className="details">
-            <span>Card Holder</span>
-            <span>Expires</span>
+            <button
+              className={paymentMethod === "cash" ? "active" : ""}
+              onClick={() => setPaymentMethod("cash")}
+            >
+              <FaMoneyBillAlt /> Cash
+            </button>
           </div>
-          <div className="details">
-            <strong>{formData.name || "YOUR NAME"}</strong>
-            <strong>{formData.expiry || "MM/YY"}</strong>
+
+          {/* Card Preview */}
+          <div className="card-preview">
+           
+            <div className="dots">
+              {formData.number || "•••• •••• •••• ••••"}
+            </div>
+            <div className="details">
+              <span>Card Holder</span>
+              <span>Expires</span>
+            </div>
+            <div className="details">
+              <strong>{formData.name || "YOUR NAME"}</strong>
+              <strong>{formData.expiry || "MM/YY"}</strong>
+            </div>
           </div>
-        </div>
 
-        {/* Card Form */}
-        <div className="card-form">
-          <label>Card Number</label>
-          <input
-            type="text"
-            name="number"
-            placeholder="1234 5678 9012 3456"
-            value={formData.number}
-            onChange={handleChange}
-            maxLength={16}
-          />
-
-          <label>Card Holder Name</label>
-          <div className="input-icon">
-            <FaUser />
+          {/* Card Form */}
+          <div className="card-form">
+            <label>Card Number</label>
             <input
               type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
+              name="number"
+              placeholder="1234 5678 9012 3456"
+              value={formData.number}
               onChange={handleChange}
+              maxLength={16}
             />
-          </div>
 
-          <div className="row">
-            <div>
-              <label>Expiry Date</label>
+            <label>Card Holder Name</label>
+            <div className="input-icon">
+              <FaUser />
               <input
                 type="text"
-                name="expiry"
-                placeholder="MM/YY"
-                value={formData.expiry}
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
                 onChange={handleChange}
-                maxLength={5}
               />
             </div>
-            <div>
-              <label>CVV</label>
-              <div className="input-icon">
-                <FaKey />
+
+            <div className="row">
+              <div>
+                <label>Expiry Date</label>
                 <input
-                  type="password"
-                  name="cvv"
-                  placeholder="123"
-                  value={formData.cvv}
+                  type="text"
+                  name="expiry"
+                  placeholder="MM/YY"
+                  value={formData.expiry}
                   onChange={handleChange}
-                  maxLength={3}
+                  maxLength={5}
                 />
               </div>
+              <div>
+                <label>CVV</label>
+                <div className="input-icon">
+                  <FaKey />
+                  <input
+                    type="password"
+                    name="cvv"
+                    placeholder="123"
+                    value={formData.cvv}
+                    onChange={handleChange}
+                    maxLength={3}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <button className="pay-btn" onClick={handlePayNow} disabled={loading}>
-            {loading ? "Processing..." : <><FaLock /> Pay Now</>}
-          </button>
-          <p className="secure-msg">✔ Your payment info is secure</p>
+            <button
+              className="pay-btn"
+              onClick={handlePayNow}
+              disabled={loading}
+            >
+              {loading ? (
+                "Processing..."
+              ) : (
+                <>
+                  <FaLock /> Pay Now
+                </>
+              )}
+            </button>
+            <p className="secure-msg">✔ Your payment info is secure</p>
+          </div>
         </div>
       </div>
-    </div>
       <style>{`
       
       .background{
@@ -163,8 +170,10 @@ function PaymentPage() {
       
       
       .checkout-container {
-  max-width: 420px;
+  // max-width: 420px;
   margin: 40px auto;
+  height: 100vh;
+  overflow-y: auto;
   padding: 20px;
  
   font-family: 'Segoe UI', sans-serif;

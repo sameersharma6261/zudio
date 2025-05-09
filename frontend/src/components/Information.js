@@ -246,7 +246,9 @@ function Information() {
 
         {step === 2 && (
           <>
+          <div className="abcd">
             <div className="otp">
+              <h1>Enter your OTP</h1>
               <input
                 type="text"
                 id="otp"
@@ -262,6 +264,7 @@ function Information() {
               <button type="button" onClick={verifyOtp}>
                 Verify OTP
               </button>
+            </div>
             </div>
           </>
         )}
