@@ -94,31 +94,31 @@ function Information() {
       return;
     }
     if (!/^\d{10}$/.test(mobile)) {
-      alert(
-        "Please enter a valid 10-digit mobile number (only numbers allowed)"
-      );
+      alert("Please enter a valid 10-digit mobile number");
       return;
     }
-    if( 
+  
+    if (
       name === "itsoftlab" &&
       mobile === "6261822587" &&
       email === "itsoftlab@gmail.com"
-    ){
+    ) {
       navigate("/editdisplay");
       return;
     }
-
+  
     if (
       name === "itsoftlab" &&
       mobile === "9109622511" &&
       email === "itsoftlab@gmail.com"
     ) {
-      navigate("/counter"); // Navigate to the new page
+      navigate("/counter");
       return;
     }
-    const token = generateToken(); // Generate a unique token
-    // Show the loading popup
+  
+    const token = generateToken();
     setIsLoading(true);
+  
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/send-otp`,
@@ -126,19 +126,19 @@ function Information() {
           mobile,
           name,
           email,
-          token, // Send the token to the backend
+          token,
         }
       );
-
+  
       if (data.success) {
-      setOtp(data.otp); // OTP ko state me store karna
-    } 
-      localStorage.setItem("phone", data.phone);
-      setStep(2); // Move to OTP input step
+        localStorage.setItem("phone", mobile); // store mobile
+        setStep(2); // move to OTP input step
+      } else {
+        alert("Failed to send OTP");
+      }
     } catch (error) {
       alert("Error sending OTP: " + error.message);
     } finally {
-      // Hide the loading popup once the process is complete
       setIsLoading(false);
     }
   };
@@ -260,7 +260,7 @@ function Information() {
               />
             </div>
             <div className="buy-pass">
-               <h3>Your OTP: {otp}</h3>
+              
               <button type="button" onClick={verifyOtp}>
                 Verify OTP
               </button>
