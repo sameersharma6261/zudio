@@ -20,7 +20,7 @@ const AppRoutes = () => {
           <Route path="counter" element={<Counter />} />
           <Route path="countdown" element={<Countdown />} />
           <Route path="editdisplay" element={<EditDisplay />} />
-          <Route path="paymentpage" element={<PaymentPage />} />
+          <Route path="paymentpage" element={<PaymentPage />} />z
         </Route>
       </Routes>
     </BrowserRouter>

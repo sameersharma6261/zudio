@@ -283,7 +283,7 @@ app.get("/get-token", async (req, res) => {
 
 
 
-// // Send Message
+// Send Message
 // app.post("/send-message", async (req, res) => {
 //   const { number } = req.body;
 
@@ -313,7 +313,7 @@ app.get("/get-token", async (req, res) => {
 
 
 
-
+// its perfect for sms mttalkz
 app.post("/send-message", async (req, res) => {
   const { number } = req.body;
 

@@ -1,12 +1,43 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { io } from "socket.io-client";
 
 const socket = io(`${process.env.REACT_APP_API_BASE_URL}`);
 
 const Countdown = () => {
+  const [showInfo, setShowInfo] = useState(false);
+  const [data, setData] = useState({ name: '', phone: '', email: '', token: '' });
+  const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState(180); // Initial 180 seconds
   const [progress, setProgress] = useState(0); // Background fill progress
   const [showMessage, setShowMessage] = useState(false); // Show thank-you message
+
+   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('devmode') === 'true') {
+      setShowInfo(true);
+
+      setData({
+        name: params.get('name') || '',
+        phone: params.get('phone') || '',
+        email: params.get('email') || '',
+        token: params.get('token') || '',
+      });
+    }
+  }, []);
+
+  const handleSecretClick = () => {
+    // Navigate to any route you want
+    navigate('/counter'); // <-- change this to your desired path
+  };
+
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch Initial Countdown
@@ -47,15 +78,86 @@ const Countdown = () => {
     <div
       style={{
         ...styles.container,
-        background: `linear-gradient(to top,rgb(29, 26, 26) ${progress}%, white ${progress}%)`,opacity:"30%",
+        background: `linear-gradient(to top,rgb(29, 26, 26) ${progress}%, white ${progress}%)`,
+        opacity: "30%",
       }}
     >
       {showMessage ? (
-        <div style={styles.message} className="fade-in">
-          Thank's for VISIT
-        </div>
+        <>
+          <div style={styles.message} className="fade-in">
+            Thank's for VISIT
+          </div>
+        </>
       ) : (
-        <div style={styles.circle}>{timeLeft}</div>
+        <>
+         {showInfo && (
+        <div className="info-table-wrapper">
+          <table className="info-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Mobile Number</th>
+                <th>Email</th>
+                <th>Token</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{data.name}</td>
+                <td>{data.phone}</td>
+                <td>{data.email}</td>
+                <td>{data.token}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button className="dev-only-button" onClick={handleSecretClick}>
+           Back To Yoyr Counter
+          </button>
+        </div>
+      )}
+      <style>{`.info-table-wrapper {
+  width: 100vw;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.info-table thead {
+  background: linear-gradient(to right, #4b3e3e, #6b3f2d);
+  color: white;
+}
+
+.info-table th,
+.info-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border: 1px solid #333;
+}
+
+.info-table tbody {
+  background-color: #1c1c1c;
+  color: #d6fdfd;
+  font-weight: bold;
+}
+
+.dev-only-button {
+  margin-top: 20px;
+  padding: 10px 18px;
+  background-color: #ff6600;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}`}</style>
+          <div style={styles.circle}>{timeLeft}</div>
+        </>
       )}
     </div>
   );

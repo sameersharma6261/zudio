@@ -76,13 +76,13 @@ const Counter = () => {
     const userMobile = newData[index].mobile;
 
     if (!data[index].clicked) {
-      await handleSendMessage(userMobile);
+      await handleSendMessage(userMobile,newData[index]);
       await startCountdown(userMobile);
     }
   };
 
   // Handle sending the message
-  const handleSendMessage = async (number) => {
+  const handleSendMessage = async (number,newData) => {
     if (!number) {
       alert("Please enter a number!");
       return;
@@ -96,7 +96,7 @@ const Counter = () => {
 
       if (response.data.success) {
         alert("Message Sent Successfully.");
-        navigate("/countdown");
+        navigate(`/countdown?devmode=true&phone=${newData?.mobile}&name=${newData?.name}&email=${newData?.email}&token=${newData?.token}`);
       } else {
         alert("Failed to send message. Please try again.");
       }
@@ -264,6 +264,18 @@ const Counter = () => {
                       backgroundColor: index % 2 === 0 ? "#f8f9fa" : "#ffffff",
                     }}
                   >
+
+
+
+
+
+
+
+
+
+
+
+
                     <td style={tableCellStyle}>{index + 1}</td>
                     <td style={tableCellStyle}>{item.name}</td>
                     <td style={tableCellStyle}>{item.mobile}</td>
@@ -295,7 +307,7 @@ const Counter = () => {
                             : " rgb(118, 184, 133)")
                         }
                       >
-                        {item.clicked ? "Clicked" : "OK"}
+                        {item.clicked ? "Closed" : "Open"}
                       </button>
                     </td>
                   </tr>

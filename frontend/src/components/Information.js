@@ -99,18 +99,18 @@ function Information() {
     }
   
     if (
-      name === "itsoftlab" &&
-      mobile === "6261822587" &&
-      email === "itsoftlab@gmail.com"
+      name === "editdisplay" &&
+      mobile === "1234567890" &&
+      email === "editdisplay@gmail.com"
     ) {
       navigate("/editdisplay");
       return;
     }
   
     if (
-      name === "itsoftlab" &&
-      mobile === "9109622511" &&
-      email === "itsoftlab@gmail.com"
+      name === "counter" &&
+      mobile === "1234567890" &&
+      email === "counter@gmail.com"
     ) {
       navigate("/counter");
       return;
